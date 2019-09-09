@@ -1,6 +1,4 @@
-package com.wh.leetcode.listNode.tree;
-
-import com.sun.org.apache.regexp.internal.RE;
+package com.wh.leetcode.tree;
 
 /**
  * @Auther: wwh

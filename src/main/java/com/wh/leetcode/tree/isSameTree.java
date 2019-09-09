@@ -1,4 +1,4 @@
-package com.wh.leetcode.listNode.tree;
+package com.wh.leetcode.tree;
 
 /**
  * @Auther: wwh

@@ -1,9 +1,4 @@
-package com.wh.leetcode.listNode.tree;
-
-import sun.jvm.hotspot.debugger.MachineDescription;
-import sun.tools.jconsole.MaximizableInternalFrame;
-
-import java.awt.*;
+package com.wh.leetcode.tree;
 
 /**
  * @Auther: wwh
