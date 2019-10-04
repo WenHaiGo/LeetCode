@@ -8,6 +8,8 @@ package designpattern;
  * 什么是单例：就是采取一定的方法保证在整个软件系统中 对某个类只能存在一个对象实例  并且该类只提供一个取的其对象实例的方法
  */
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import java.security.Signature;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -96,6 +98,7 @@ class SingletonLazySafe {
     }
 }
 
+//双重检查
 class SingletonLazyDoubleCheck {
     //1、构造器私有化  外面不可以new
     private SingletonLazyDoubleCheck(){
@@ -117,6 +120,25 @@ class SingletonLazyDoubleCheck {
         return instance;
     }
 }
+
+
+//静态内部类
+class SingletonLazyStaticInner {
+    //1、构造器私有化  外面不可以new
+    private SingletonLazyStaticInner(){
+        System.out.println("这是在构造方法中的一句话，用来验证产生了几个对象");
+    }
+
+    private static class  SingletonInner{
+        private static final SingletonLazyStaticInner INSTANCE = new SingletonLazyStaticInner();
+    }
+    //3、提供一个共有的静态方法，返回实例对象
+    public static synchronized SingletonLazyStaticInner getInstance(){
+
+        return SingletonInner.INSTANCE;
+    }
+}
+
 
 
 public class SingletonTest implements Runnable {
@@ -158,7 +180,7 @@ public class SingletonTest implements Runnable {
 
     @Override
     public void run() {
-        SingletonLazyDoubleCheck.getInstance() ;
+        SingletonLazyStaticInner.getInstance() ;
     }
 
 
