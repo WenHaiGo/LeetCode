@@ -8,6 +8,7 @@ package designpattern;
  * 什么是单例：就是采取一定的方法保证在整个软件系统中 对某个类只能存在一个对象实例  并且该类只提供一个取的其对象实例的方法
  */
 
+import java.security.Signature;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -67,7 +68,10 @@ class SingletonLazyUnsafe {
     //3、提供一个共有的静态方法，返回实例对象
     public static SingletonLazyUnsafe getInstance(){
         if(instance==null){
-            instance = new SingletonLazyUnsafe();
+            synchronized (SingletonLazyUnsafe.class){
+                instance = new SingletonLazyUnsafe();
+            }
+
         }
         return instance;
     }
@@ -87,6 +91,28 @@ class SingletonLazySafe {
     public static synchronized SingletonLazySafe getInstance(){
         if(instance==null){
             instance = new SingletonLazySafe();
+        }
+        return instance;
+    }
+}
+
+class SingletonLazyDoubleCheck {
+    //1、构造器私有化  外面不可以new
+    private SingletonLazyDoubleCheck(){
+        System.out.println("这是在构造方法中的一句话，用来验证产生了几个对象");
+    }
+
+    private static SingletonLazyDoubleCheck instance ;
+    //2、 静态代码块中创建单例对象
+
+    //3、提供一个共有的静态方法，返回实例对象
+    public static synchronized SingletonLazyDoubleCheck getInstance(){
+        if(instance==null){
+            synchronized (SingletonLazyDoubleCheck.class){
+                if(instance==null){
+                    instance = new SingletonLazyDoubleCheck();
+                }
+            }
         }
         return instance;
     }
@@ -132,7 +158,7 @@ public class SingletonTest implements Runnable {
 
     @Override
     public void run() {
-         SingletonLazyUnsafe.getInstance() ;
+        SingletonLazyDoubleCheck.getInstance() ;
     }
 
 
