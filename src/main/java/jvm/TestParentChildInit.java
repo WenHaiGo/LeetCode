@@ -11,9 +11,9 @@ package jvm;
 public class TestParentChildInit {
     public static void main(String[] args) {
         //只会打印MyParent
-        System.out.println(MyChild1.str);
+        System.out.println(MyParent1.str);
         //都会打印
-        System.out.println(MyChild1.str);
+       // System.out.println(MyChild1.str);
     }
 }
 

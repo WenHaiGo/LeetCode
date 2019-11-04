@@ -139,7 +139,14 @@ class SingletonLazyStaticInner {
     }
 }
 
+//使用枚举
 
+enum SingletonLazyEnum{
+    INSTANCE;//属性
+    public void sayOk(){
+        System.out.println("ok");
+    }
+}
 
 public class SingletonTest implements Runnable {
     // 请求总数
@@ -180,7 +187,7 @@ public class SingletonTest implements Runnable {
 
     @Override
     public void run() {
-        SingletonLazyStaticInner.getInstance() ;
+        SingletonLazyEnum d  = SingletonLazyEnum.INSTANCE ;
     }
 
 

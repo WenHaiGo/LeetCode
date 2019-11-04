@@ -47,8 +47,14 @@ public class Permutation {
             int[] nums = new int[]{1, 2};
             Permutation solution = new Permutation();
             List<List<Integer>> permute = solution.permute(nums);
-            for (int i = 0; i < permute.size(); i++) {
+            int  i = 0;
+            for (; i < permute.size(); i++) {
                 System.out.println(permute.get(i));
+            }
+
+            int j = 0;
+            for (; j <= 10; j++) {
+                System.out.println(j);
             }
         }
 }
